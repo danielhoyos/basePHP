@@ -5,11 +5,6 @@ class AppController{
         require_once "appserver/_class/Config.php";
         require_once "config.php";
 
-        // Archivos del Servidor
-        require_once "{$config->get("models")}IModel.php";
-        require_once "{$config->get("models")}SPDO.php";
-        require_once "{$config->get("views")}View.php";
-
         // Verificamos los controladores y las acciones
         $controllerName = empty($_GET["controller"]) ? "IndexController" : "{$_GET["controller"]}Controller";
         $actionName = empty($_GET["action"]) ? "index" : "{$_GET["action"]}";
@@ -19,7 +14,6 @@ class AppController{
 
         // Verificamos si el controllador existe y llamamos la función solicitada
         if(is_file($controllerPath)){
-            require_once "{$controllerPath}";
 
             if(is_callable(array($controllerName, $actionName), false)){
                 $controller = new $controllerName();

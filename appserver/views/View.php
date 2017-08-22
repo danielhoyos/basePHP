@@ -11,7 +11,7 @@ class View{
 
         if(is_file($templatePath)){
             extract($vars);
-            include "{$templatePath}";
+            include_once "{$templatePath}";
         }else{
             trigger_error("Template \"{$template}\" does not exist.", E_USER_NOTICE);
         }
